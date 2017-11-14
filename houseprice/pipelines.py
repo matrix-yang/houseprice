@@ -8,4 +8,9 @@
 
 class HousepricePipeline(object):
     def process_item(self, item, spider):
+        print("HousepricePipeline-------->",item)
         return item
+    def open_spider(self, spider):
+        print("open_spider------------------->",spider)
+    def close_spider(self, spider):
+        print("close_spider------------------->",spider)

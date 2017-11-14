@@ -11,4 +11,9 @@ import scrapy
 class HousepriceItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    pass
+    buildName = scrapy.Field()
+    type = scrapy.Field()
+    avgPrice = scrapy.Field()
+    structure = scrapy.Field()
+    coveredArea = scrapy.Field()
+    location = scrapy.Field()
