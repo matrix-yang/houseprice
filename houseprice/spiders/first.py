@@ -22,13 +22,17 @@ class DmozSpider(scrapy.Spider):
             item['coveredArea'] = p.xpath('p[2]/span/text()').extract()[0]
             item['location'] = p.xpath('p[3]/@title').extract()[0]
             yield item
-
-        next_page_url = response.selector.xpath('/ html / body / div[7] / div / div / div').extract()
-        for u in next_page_url:
-            if (!(r.sismember("preurl",u)))
+        div_page_url = response.selector.xpath('/html/body/div[7]/div/div/div')
+        print("------------------>", div_page_url)
+        hrefs = div_page_url.xpath('a[not(@class)]/@href').extract()
+        for u in hrefs:
+            u = 'http://gz.centanet.com' + u
+            if not (r.sismember("preurl", u) or r.sismember("nexturl", u)):
                 r.sadd("nexturl", u)
 
         nexturl = r.spop("nexturl")
         if nexturl is not None:
             r.sadd("preurl", nexturl)
-            yield scrapy.Request(response.urljoin(next_page_url))
+            # next_page = response.urljoin(next_page)   相对连接赚绝对连接
+            # yield scrapy.Request(next_page, callback=self.parse)
+            yield scrapy.Request(nexturl, callback=self.parse)
