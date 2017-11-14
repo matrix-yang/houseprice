@@ -1,6 +1,7 @@
 import scrapy;
 
 from houseprice.items import HousepriceItem
+from houseprice.testredis import r
 
 
 class DmozSpider(scrapy.Spider):
@@ -21,8 +22,13 @@ class DmozSpider(scrapy.Spider):
             item['coveredArea'] = p.xpath('p[2]/span/text()').extract()[0]
             item['location'] = p.xpath('p[3]/@title').extract()[0]
             yield item
-            #print("------------------------------------------>",item)
 
-        next_page_url = response.selector.xpath('/ html / body / div[7] / div / div / div')
-        if next_page_url is not None:
+        next_page_url = response.selector.xpath('/ html / body / div[7] / div / div / div').extract()
+        for u in next_page_url:
+            if (!(r.sismember("preurl",u)))
+                r.sadd("nexturl", u)
+
+        nexturl = r.spop("nexturl")
+        if nexturl is not None:
+            r.sadd("preurl", nexturl)
             yield scrapy.Request(response.urljoin(next_page_url))
