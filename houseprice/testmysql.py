@@ -1,4 +1,11 @@
 import pymysql.cursors
+import datetime
+
+year=datetime.datetime.now().year
+
+month=datetime.datetime.now().month
+
+day=datetime.datetime.now().day
 # 连接数据库
 connect = pymysql.Connect(
     host='localhost',
@@ -13,14 +20,18 @@ connect = pymysql.Connect(
 cursor = connect.cursor()
 
 def saveItem(item):
-    sql = "INSERT INTO house (buildName, type, avgPrice,structure,coveredArea,location) " \
-          "VALUES ( '%s', '%s', %.2f , '%s', '%s', '%s')"
+    #print('------------->',year,month,day)
+    sql = "INSERT INTO house (buildName, type, avgPrice,structure,coveredArea,location,year,month,day) " \
+          "VALUES ( '%s', '%s', %.2f , '%s', '%s', '%s','%d','%d','%d')"
     data = (item['buildName'] ,
             item['type'] ,
             int(item['avgPrice']) ,
             item['structure'] ,
             item['coveredArea'] ,
-            item['location'])
+            item['location'],
+            int(year),
+            int(month),
+            int(day))
     cursor.execute(sql % data)
     connect.commit()
     print('成功插入', cursor.rowcount, '条数据')
