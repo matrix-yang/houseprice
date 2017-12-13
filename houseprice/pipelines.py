@@ -17,6 +17,7 @@ class HousepricePipeline(object):
         print("open_spider------------------->",spider)
         clearAll()
         r.sadd("preurl",  "http://gz.centanet.com/xinfang/g1/")
+        r.sadd("spreurl", "https://gz.fang.anjuke.com/loupan/all/")
 
     def close_spider(self, spider):
         print("close_spider------------------->",spider)

@@ -10,3 +10,9 @@ def clearAll():
 
     while r.scard('preurl'):
         print("preurl remove--->", r.spop("preurl"))
+
+    while r.scard('snexturl'):
+        print("snexturl remove--->", r.spop("snexturl"))
+
+    while r.scard('spreurl'):
+        print("spreurl remove--->", r.spop("spreurl"))
