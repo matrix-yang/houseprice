@@ -5,4 +5,5 @@ export PATH=$PATH:/usr/local/bin
 cd /home/pi/PythonCode/houseprice  
   
 #执行.py中定义的项目example其中nohup  
-nohup scrapy crawl centanet >> centanet.log 2>&1 & 
+nohup scrapy crawl centanet >> centanet.log 2>&1 &
+nohup scrapy crawl second >> second.log 2>&1 &
