@@ -6,6 +6,8 @@
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline
 from houseprice.testmysql import *
 from houseprice.testredis import *
+import sys
+
 
 class HousepricePipeline(object):
     def process_item(self, item, spider):
@@ -14,6 +16,8 @@ class HousepricePipeline(object):
         return item
 
     def open_spider(self, spider):
+        reload(sys)
+        sys.setdefaultencoding('utf-8')
         print("open_spider------------------->",spider)
         clearAll()
         r.sadd("preurl",  "http://gz.centanet.com/xinfang/g1/")
