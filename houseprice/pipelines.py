@@ -17,7 +17,7 @@ class HousepricePipeline(object):
 
     def open_spider(self, spider):
         reload(sys)
-        sys.setdefaultencoding('utf-8')
+        sys.setdefaultencoding('GB2312')
         print("open_spider------------------->",spider)
         clearAll()
         r.sadd("preurl",  "http://gz.centanet.com/xinfang/g1/")
