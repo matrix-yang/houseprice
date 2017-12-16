@@ -45,16 +45,16 @@ class DmozSpider(scrapy.Spider):
             print("second--------------------->", item);
         try:
             href = response.xpath('//a[@class="next-page next-link"]/@href').extract()[0]
+            print('we find----->', href)
+            if not r.sismember("spreurl", href):
+                print('snexturl add ----->', href)
+                r.sadd("snexturl", href)
+            while r.scard('snexturl'):
+                snexturl = r.spop("snexturl")
+                print("snexturl-->", snexturl)
+                r.sadd("spreurl", snexturl)
+                # next_page = response.urljoin(next_page)   相对连接转绝对连接
+                # yield scrapy.Request(next_page, callback=self.parse)
+                yield scrapy.Request(snexturl, callback=self.parse)
         except Exception as e:
-            return 0
-        print('we find----->', href)
-        if not r.sismember("spreurl", href):
-            print('snexturl add ----->', href)
-            r.sadd("snexturl", href)
-        while r.scard('snexturl'):
-            snexturl = r.spop("snexturl")
-            print("snexturl-->", snexturl)
-            r.sadd("spreurl", snexturl)
-            # next_page = response.urljoin(next_page)   相对连接转绝对连接
-            # yield scrapy.Request(next_page, callback=self.parse)
-            yield scrapy.Request(snexturl, callback=self.parse)
+            print('href----->null')
