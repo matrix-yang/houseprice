@@ -29,7 +29,7 @@ class DmozSpider(scrapy.Spider):
                 if utf.__contains__('：'):
                     print(utf.index('：'))
                 print(mi)
-                print(mi.index('：'))
+                print(mi.__contains__('：'))
                 if (mi.__contains__('：')):
                     print(mi)
                     print(mi.index('：'))
