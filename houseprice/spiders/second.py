@@ -24,9 +24,9 @@ class DmozSpider(scrapy.Spider):
             tArea=''
             print(mixinfo)
             for mi in mixinfo:
-                utf=mi.decode('unicode_escape');
+                utf=mi.decode();
                 print(utf)
-                print(utf.index('：'))
+                print(utf.__contains__('：'))
                 print(mi)
                 print(mi.index('：'))
                 if (mi.__contains__('：')):
