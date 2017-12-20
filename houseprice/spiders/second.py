@@ -43,7 +43,6 @@ class DmozSpider(scrapy.Spider):
             item['structure'] = tstructure[:-1]
             item['coveredArea'] = tArea[:-1]
             tlocation=p.xpath('div/a[2]/span/text()').extract()[0]
-            print(tlocation)
             item['location'] =''.join(tlocation.split(' '))
             yield item
             print("second--------------------->", item);
