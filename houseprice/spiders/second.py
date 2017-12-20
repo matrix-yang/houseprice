@@ -23,6 +23,8 @@ class DmozSpider(scrapy.Spider):
             tstructure=''
             tArea=''
             for mi in mixinfo:
+                print(mi)
+                print(mi.index('：'))
                 if (mi.__contains__('：')):
                     print(mi)
                     print(mi.index('：'))
