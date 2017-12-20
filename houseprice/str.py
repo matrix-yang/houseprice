@@ -5,3 +5,4 @@ print(a)
 
 if a.__contains__('：'):
     print(a.index('：'))
+    print(a[a.index('：'):])
