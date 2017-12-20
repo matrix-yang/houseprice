@@ -26,7 +26,8 @@ class DmozSpider(scrapy.Spider):
             for mi in mixinfo:
                 utf=mi.decode();
                 print(utf)
-                print(utf.__contains__('：'))
+                if utf.__contains__('：'):
+                    print(utf.index('：'))
                 print(mi)
                 print(mi.index('：'))
                 if (mi.__contains__('：')):
