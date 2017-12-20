@@ -24,12 +24,6 @@ class DmozSpider(scrapy.Spider):
             tArea=''
             print(mixinfo)
             for mi in mixinfo:
-                utf=mi.decode();
-                print(utf)
-                if utf.__contains__('：'):
-                    print(utf.index('：'))
-                print(mi)
-                print(mi.__contains__('：'))
                 if (mi.__contains__('：')):
                     print(mi)
                     print(mi.index('：'))
@@ -49,6 +43,7 @@ class DmozSpider(scrapy.Spider):
             item['structure'] = tstructure[:-1]
             item['coveredArea'] = tArea[:-1]
             tlocation=p.xpath('div/a[2]/span/text()').extract()[0]
+            print(tlocation)
             item['location'] =''.join(tlocation.split('\xa0'))
             yield item
             print("second--------------------->", item);
