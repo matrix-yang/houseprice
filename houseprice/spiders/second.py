@@ -22,6 +22,7 @@ class DmozSpider(scrapy.Spider):
             mixinfo=p.xpath('div/a[3]/span/text()').extract()
             tstructure=''
             tArea=''
+            print(mixinfo)
             for mi in mixinfo:
                 print(mi)
                 print(mi.index(u'：'))
